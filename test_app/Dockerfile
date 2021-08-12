@@ -17,4 +17,3 @@ WORKDIR   /myapp
 COPY ./myapp/Gemfile      /myapp/Gemfile
 COPY ./myapp/Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
-COPY ./myapp /myapp
