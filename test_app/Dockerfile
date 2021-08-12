@@ -14,7 +14,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
 
 RUN mkdir /myapp
 WORKDIR   /myapp
-COPY Gemfile      /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+COPY ./myapp/Gemfile      /myapp/Gemfile
+COPY ./myapp/Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 COPY ./myapp /myapp

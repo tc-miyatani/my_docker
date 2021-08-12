@@ -3,6 +3,20 @@
 
 ## railsプロジェクト作成
 
+```Dockerfile
+# 〜
+COPY Gemfile      /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
+# 〜
+```
+
+```Gemfile
+source 'https://rubygems.org'
+gem 'rails', '6.0.0'
+```
+
+`Gemfile.lock`は空でOK
+
 ```zsh
 docker-compose run test_app rails new . --force --database=postgresql
 ```
@@ -22,12 +36,16 @@ default: &default
   password:
 ```
 
+```Dockerfile
+# 〜
+COPY ./myapp/Gemfile      /myapp/Gemfile
+COPY ./myapp/Gemfile.lock /myapp/Gemfile.lock
+# 〜
+```
 ## docker実行
 
 ```zsh
-docker-compose run test_app bundle install
 docker-compose build
 docker-compose up -d
 docker-compose run test_app rails db:create
-
 ```
