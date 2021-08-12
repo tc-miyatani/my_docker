@@ -1,27 +1,36 @@
 version: '3'
 services:
   db:
-    image: postgres
+    image: mariadb
     environment:
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      MARIADB_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
     volumes:
-      - pgdatavol:/var/lib/postgresql/data
-  web:
-    image: nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/html:/usr/share/nginx/html:ro
-  test_app:
-    build: ./test_app
+      - mysqlvol:/var/lib/mysql
+  # web:
+  #   image: nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx/conf.d:/etc/nginx/conf.d
+  #     - ./nginx/html:/usr/share/nginx/html:ro
+  rails_mysql:
+    build: ./rails_mysql
     command: rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - ./test_app/myapp:/myapp
+      - ./rails_mysql/myapp:/myapp
     ports:
-      - "3000:3000"
+      - "3030:3000"
     depends_on:
       - db
+  # web_reminder:
+  #   build: ./web_reminder
+  #   command: rails s -p 3000 -b '0.0.0.0'
+  #   volumes:
+  #     - ~/portfolio/web_reminder:/myapp
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db
 volumes:
-  pgdatavol: {}
+  mysqlvol: {}
