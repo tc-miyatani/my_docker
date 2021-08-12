@@ -6,6 +6,14 @@ services:
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
     volumes:
       - pgdatavol:/var/lib/postgresql/data
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/html:/usr/share/nginx/html:ro
   test_app:
     build: ./test_app
     command: rails s -p 3000 -b '0.0.0.0'
