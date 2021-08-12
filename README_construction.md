@@ -33,7 +33,7 @@ default: &default
   encoding: unicode
   host: db
   username: postgres
-  password:
+  password: docker-compose.ymlで設定したPOSTGRES_PASSWORD
 ```
 
 ```Dockerfile
