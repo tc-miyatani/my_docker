@@ -48,7 +48,9 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: docker-compose.ymlで設定したMYSQL_ROOT_PASSWORD
-  host: db
+  # host: db
+  socket: /run/mysqlId/mysqld.sock
+  # socket: /tmp/mysql.sock
 ```
 
 ### 共通
