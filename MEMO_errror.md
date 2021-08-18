@@ -1,4 +1,14 @@
 
+# cronでdocker-composeコマンド
+
+エラー内容: `the input device is not a TTY`
+
+```bash
+# cron上で実行されるとエラーが出るコマンド
+docker-compose exec cloud_reminder rails task_reminder:for_cron_test
+# エラー解消: `-T`を付ければOK
+docker-compose exec -T cloud_reminder rails task_reminder:for_cron_test
+```
 # rails + mysql
 
 ## Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
