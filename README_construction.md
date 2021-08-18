@@ -78,3 +78,9 @@ cd web_reminder
 cp ~/portfolio/web_reminder/Gemfile .
 cp ~/portfolio/web_reminder/Gemfile.lock .
 ```
+
+# cron
+
+ホスト側のcronを実行する
+
+* * * * * /bin/bash -l -c 'cd ~/portfolio/my_docker && docker-compose run --rm web_reminder rails task_reminder:for_cron_test >> ~/portfolio/web_reminder/log/cron2.log 2>&1'
