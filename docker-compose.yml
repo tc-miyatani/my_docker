@@ -17,8 +17,8 @@ services:
       - "443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/html:/usr/share/nginx/html:ro
-  web_reminder:
+      - ~/portfolio/web_reminder:/usr/share/nginx/html:ro
+  cloud_reminder:
     build: ./web_reminder
     command: bundle exec unicorn_rails -c config/unicorn.rb -E development
     volumes:
@@ -29,4 +29,4 @@ services:
       - db
 volumes:
   mysqlvol: {}
-  mysqlsock: {}
+
