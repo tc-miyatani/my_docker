@@ -79,8 +79,13 @@ cp ~/portfolio/web_reminder/Gemfile .
 cp ~/portfolio/web_reminder/Gemfile.lock .
 ```
 
-# cron
+## cron
 
 ホスト側のcronを実行する
 
 * * * * * /bin/bash -l -c 'cd ~/portfolio/my_docker && docker-compose run --rm web_reminder rails task_reminder:for_cron_test >> ~/portfolio/web_reminder/log/cron2.log 2>&1'
+
+## unicorn
+
+bundle exec unicorn_rails -c config/unicorn.rb -E development -D
+RAILS_SERVE_STATIC_FILES=1 bundle exec unicorn_rails -c config/unicorn.rb -E production -D
