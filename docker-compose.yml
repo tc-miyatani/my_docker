@@ -23,10 +23,13 @@ services:
     command: bundle exec unicorn_rails -c config/unicorn.rb -E development
     volumes:
       - ~/portfolio/cloud_reminder:/myapp
+      # - ~/portfolio/cloud_reminder/unicorn.rb:/unicorn/unicorn.rb:ro
     ports:
       - "3000:3000"
     depends_on:
       - db
+    env_file:
+      - .env
 volumes:
   mysqlvol: {}
 
