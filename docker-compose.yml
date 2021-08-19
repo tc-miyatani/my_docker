@@ -17,16 +17,19 @@ services:
       - "443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
-      - ~/portfolio/web_reminder:/usr/share/nginx/html:ro
+      - ~/portfolio/cloud_reminder:/usr/share/nginx/html:ro
   cloud_reminder:
-    build: ./web_reminder
+    build: ./cloud_reminder
     command: bundle exec unicorn_rails -c config/unicorn.rb -E development
     volumes:
-      - ~/portfolio/web_reminder:/myapp
+      - ~/portfolio/cloud_reminder:/myapp
+      # - ~/portfolio/cloud_reminder/unicorn.rb:/unicorn/unicorn.rb:ro
     ports:
       - "3000:3000"
     depends_on:
       - db
+    env_file:
+      - .env
 volumes:
   mysqlvol: {}
 

@@ -89,3 +89,34 @@ cp ~/portfolio/web_reminder/Gemfile.lock .
 
 bundle exec unicorn_rails -c config/unicorn.rb -E development -D
 RAILS_SERVE_STATIC_FILES=1 bundle exec unicorn_rails -c config/unicorn.rb -E production -D
+
+
+## circleci for mac
+
+CircleCIのconfigのテスト
+
+```
+# circleciコマンドインストール
+curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | bash
+# 実行
+circleci local execute
+```
+
+## aws + docker
+
+### EC2にdocker/docker-composeインストールして使う
+
+```zsh
+# dockerインストール
+sudo yum install -y docker
+sudo service docker start
+sudo usermod -a -G docker ec2-user
+docker --version
+
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+```
+
+### ECR/ECS
+

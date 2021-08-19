@@ -7,6 +7,16 @@ elif [ $# -eq 1 ]; then
   ID=`docker ps | grep "$NAME" | awk '{print $1}'`
   echo "docker exec -it" $ID "/bin/bash"
   docker exec -it $ID /bin/bash
+elif [ $# -eq 2 ]; then
+  if [ $1 = 'cp' ] && [ $2 = 'gemfile' ]; then
+    cp ~/portfolio/cloud_reminder/Gemfile             ~/portfolio/my_docker/cloud_reminder/
+    cp ~/portfolio/cloud_reminder/Gemfile.lock        ~/portfolio/my_docker/cloud_reminder/
+    cp ~/portfolio/cloud_reminder/config/unicorn.rb   ~/portfolio/my_docker/cloud_reminder/
+    cp ~/portfolio/cloud_reminder/config/database.yml ~/portfolio/my_docker/cloud_reminder/
+    ls -l cloud_reminder | grep Gem
+  else
+    echo '引数の指定が間違っています'
+  fi
 else
-  echo '未実装'
+  echo '引数が多すぎます'
 fi
