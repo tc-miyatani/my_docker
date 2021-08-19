@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    restart: always
+  web:
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/production.conf.d:/etc/nginx/conf.d
+      - ~/portfolio/cloud_reminder:/usr/share/nginx/html:ro
+      - /etc/letsencrypt/live:/etc/letsencrypt/live:ro
+    restart: always
+  cloud_reminder:
+    command: RAILS_SERVE_STATIC_FILES=1 bundle exec unicorn_rails -c config/unicorn.rb -E production
+    env_file:
+      - .env
+      - .production.env
+    environment:
+      - RAILS_ENV=production
+    restart: always

@@ -14,7 +14,6 @@ services:
     image: nginx
     ports:
       - "80:80"
-      - "443:443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ~/portfolio/cloud_reminder:/usr/share/nginx/html:ro
