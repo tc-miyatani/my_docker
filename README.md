@@ -4,6 +4,9 @@ Dockerを利用したインフラを構成する為のリポジトリです。
 ローカルではDockerComposeを利用して環境を構築しています。
 アプリケーションファイルは別リポジトリで管理しています。
 
+まずはAWSのEC2でもdocker-composeを使って環境を構築することを目的としています。
+ECSとかを使用するのは今後の目標としています。
+
 ## 現在の構成
 
 * Nginx + Rails(Unicorn) + MariaDB
@@ -16,8 +19,7 @@ Dockerを利用したインフラを構成する為のリポジトリです。
 
 # ブランチ
 
-* master: 本番(AWS)環境用(未実装)
-* local : ローカル開発環境用
+* master: baseブランチで作成したイメージを元にした構成
 * base  : 基礎dockerイメージの作成、テスト用
 
 # シェルスクリプト
@@ -30,7 +32,9 @@ Dockerを利用したインフラを構成する為のリポジトリです。
 * `docker exec -it コンテナID /bin/bash`
   * `./s.sh コンテナ名(一意に絞れるコンテナ名の一部でOK)`
   * コンテナ内に入る為のコマンド
-
+* `docker-compose -f docker-compose.yml -f production.yml up -d`
+  * `./production.sh`
+  * 本番環境用のコマンド
 # 構築時のメモ
 
 構築時に試行錯誤したこと、調べた内容について記録を残しています。
