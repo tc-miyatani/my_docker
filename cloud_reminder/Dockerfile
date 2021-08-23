@@ -1,4 +1,4 @@
-FROM --platform linux/arm64 kamiyakei/rails_mysql
+FROM --platform=linux/arm64 kamiyakei/rails_mysql
 
 COPY Gemfile      /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
