@@ -12,6 +12,7 @@ services:
       - /etc/letsencrypt/live:/etc/letsencrypt/live:ro
     restart: always
   cloud_reminder:
+    platform: linux/amd64
     command: RAILS_SERVE_STATIC_FILES=1 bundle exec unicorn_rails -c config/unicorn.rb -E production
     env_file:
       - .env
