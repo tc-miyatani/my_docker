@@ -5,7 +5,7 @@ services:
     ports:
       - "13306:3306"
     environment:
-      MARIADB_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      - MARIADB_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"
     volumes:
       - mysqlvol:/var/lib/mysql
       - ./mysql/conf.d:/etc/mysql/conf.d
@@ -26,6 +26,9 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    environment:
+      - RAILS_ENV=development
+      - DB_TYPE=docker
     env_file:
       - .env
 volumes:
